@@ -1,0 +1,54 @@
+﻿@page
+@model ElectronicComponents.Pages.Stock.IndexModel
+@{
+}
+
+<br>
+<h2>List of Stock</h2>
+<div class="d-flex justify-content-between mb-3">
+    <div>
+        <a class='btn btn-primary btn-sm' href='/Stock/Create'>New Stock</a>
+    </div>
+    <div>
+        <form method="get" asp-action="Index">
+            <div class="input-group">
+                <input type="text" class="form-control" name="searchString" placeholder="Search by name...">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="bi bi-search"></i> Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Manufacturer</th>
+            <th>Price</th>
+            <th>Address</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listStocks)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.manufacturer</td>
+                <td>@item.price</td>
+                <td>@item.address</td>
+                <td>@item.created_at</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Stock/Edit?id=@item.id'>Edit</a>
+                    <a class='btn btn-primary btn-sm' href='/Stock/Delete?id=@item.id'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/3405/3405244.png' alt='Delete' style='width: 20px; height: 20px;'>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
